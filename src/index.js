@@ -1,9 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux'
+
 
 import App from './components/App';
+import reducers from './reducers';
 
-//require("dotenv").config();
-//console.log(`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-ReactDOM.render(<App/>, document.querySelector('#root'));
+const store = createStore(
+  reducers, 
+  composeEnhancers(applyMiddleware())
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App/>
+  </Provider>,
+  document.querySelector('#root')
+);
+
