@@ -12,6 +12,7 @@ export default (state = {}, action) => {
     case FETCH_STREAM:
     case CREATE_STREAM:
     case EDIT_STREAM:
+      console.log("RETURNING STATE...")
       return {...state, [action.payload.id]: action.payload};
     case DELETE_STREAM:
       return _.omit(state, action.payload);
